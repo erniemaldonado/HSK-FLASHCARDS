@@ -46,24 +46,27 @@ class FlashcardApp:
 
 
         # GUI Components
-        self.question_label = tk.Label(self.container, text="", wraplength=350, font=("SimHei", 40))
+        self.question_label = tk.Label(self.container, text="", wraplength=500, font=("SimHei", 60))
         self.question_label.pack(pady=20)
 
-        self.answer_label = tk.Label(self.container, text="", wraplength=350, font=("Arial", 14), fg="blue")
+        self.answer_label = tk.Label(self.container, text="", wraplength=800, font=("Arial", 20), fg="blue")
         self.answer_label.pack(pady=20)
 
         # Frame for Buttons
         button_frame = tk.Frame(self.container)
         button_frame.pack(pady=10)
-
-        self.show_answer_button = tk.Button(button_frame, text="Show Answer", command=self.show_answer)
+        button_width=14
+        button_font=("arial",12)
+        self.show_answer_button = tk.Button(button_frame, text="Show Answer", command=self.show_answer, width=button_width, cursor="hand2",font=button_font)
         self.show_answer_button.grid(row=0, column=0, padx=10)
+        
+        self.prev_button = tk.Button(button_frame, text="Previous", command=self.prev_flashcard,width=button_width,highlightthickness=2, cursor="hand2",font=button_font)
+        self.prev_button.grid(row=0, column=1, padx=10)
+        
+        self.next_button = tk.Button(button_frame, text="Next", command=self.next_flashcard,width=button_width, cursor="hand2",font=button_font)
+        self.next_button.grid(row=0, column=2, padx=10)
 
-        self.next_button = tk.Button(button_frame, text="Next", command=self.next_flashcard)
-        self.next_button.grid(row=0, column=1, padx=10)
-
-        self.prev_button = tk.Button(button_frame, text="Previous", command=self.prev_flashcard)
-        self.prev_button.grid(row=0, column=2, padx=10)
+   
 
         self.display_flashcard()  # Display the first flashcard
 
@@ -148,7 +151,7 @@ def center(win):
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = FlashcardApp(root, "cleaned_flashcards.csv")
+    app = FlashcardApp(root, "HSK4 上.csv") #cleaned_flashcards.csv
     center(root)
     
     root.mainloop()
